@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        folder: ${{ fromJson(needs.provide_packages_json.outputs.matrix) }}
+        folder: ${{ fromJson(needs.get_methods.outputs.matrix) }}
     permissions:
       contents: read
       packages: write
