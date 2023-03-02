@@ -1,7 +1,7 @@
 name: Build & publish images
-on:
-  release:
-    types: # [published]
+on: 
+  repository_dispatch:
+    types: [release_ldimbenchmark]
 
 env:
   REGISTRY: ghcr.io
