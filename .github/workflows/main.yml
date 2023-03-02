@@ -24,6 +24,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
   build-and-push-image:
+    needs: get_methods
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
