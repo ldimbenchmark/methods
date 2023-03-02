@@ -1,7 +1,10 @@
 name: Build & publish images
 on: 
-  repository_dispatch:
-    types: [release_ldimbenchmark]
+  workflow_dispatch:
+    inputs:
+      version:
+        type: text
+        required: true
 
 env:
   REGISTRY: ghcr.io
