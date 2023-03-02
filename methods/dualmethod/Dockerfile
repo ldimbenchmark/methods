@@ -1,7 +1,6 @@
-# Implement the method to test in a Docker container
+ARG LDIMBENCHMARK_VERSION
 
-FROM ghcr.io/ldimbenchmark/ldimbenchmark:0.1.20
+FROM ghcr.io/ldimbenchmark/ldimbenchmark:${LDIMBENCHMARK_VERSION}
 
 COPY method.py method.py 
-
 CMD [ "python", "method.py" ]
