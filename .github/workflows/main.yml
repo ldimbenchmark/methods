@@ -57,7 +57,8 @@ jobs:
           context: methods/${{ matrix.folder }}/
           file: methods/${{ matrix.folder }}/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          #tags: ghcr.io/ldimbenchmark/ldimbenchmark:${{ github.event.inputs.version }}
+          tags: ghcr.io/ldimbenchmark/${{ matrix.folder }}:${{ github.event.inputs.version }} , ghcr.io/ldimbenchmark/${{ matrix.folder }}:latest
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             LDIMBENCHMARK_VERSION=${{ github.event.inputs.version }}
