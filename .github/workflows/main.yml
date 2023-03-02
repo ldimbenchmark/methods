@@ -14,9 +14,9 @@ jobs:
   get_methods:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls methods)"
+        run: echo "::set-output name=matrix::$(ls | jq -R -s -c 'split("\n")[:-1]')"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -55,3 +55,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            LDIMBENCHMARK_VERSION=${{ github.event.inputs.version }}
