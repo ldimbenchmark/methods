@@ -17,5 +17,5 @@ logging.basicConfig(level=numeric_level, handlers=[logging.StreamHandler()])
 logging.getLogger().setLevel(numeric_level)
 
 if __name__ == "__main__":
-    runner = FileBasedMethodRunner(LILA())
+    runner = FileBasedMethodRunner(LILA(), in_docker=True)
     runner.run()
