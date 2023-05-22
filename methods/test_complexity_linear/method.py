@@ -1,10 +1,12 @@
+
+
 import os
 import logging
 from ldimbenchmark import (
     FileBasedMethodRunner,
 )
 
-from ldimbenchmark.methods.mnf import MNF
+from ldimbenchmark.methods.test_complexity_linear import TestLinearComplexityLeakageDetectionMethod
 
 # read log level from environment variable
 logLevel = os.getenv("LOG_LEVEL", "INFO")
@@ -17,5 +19,5 @@ logging.basicConfig(level=numeric_level, handlers=[logging.StreamHandler()])
 logging.getLogger().setLevel(numeric_level)
 
 if __name__ == "__main__":
-    runner = FileBasedMethodRunner(TestExponentialComplexityLeakageDetectionMethod())
+    runner = FileBasedMethodRunner(TestLinearComplexityLeakageDetectionMethod())
     runner.run()

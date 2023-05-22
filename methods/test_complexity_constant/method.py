@@ -4,7 +4,7 @@ from ldimbenchmark import (
     FileBasedMethodRunner,
 )
 
-from ldimbenchmark.methods.mnf import MNF
+from ldimbenchmark.methods.test_complexity_constant import TestConstantComplexityLeakageDetectionMethod
 
 # read log level from environment variable
 logLevel = os.getenv("LOG_LEVEL", "INFO")
