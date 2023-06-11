@@ -51,14 +51,21 @@ jobs:
         with:
           images: ghcr.io/ldimbenchmark/${{ matrix.folder }}
 
+      - name: Get Version
+        id: version
+        run: |
+          VER=$(cat VERSION)
+          echo "VERSION=$VER" >> $GITHUB_ENV
+        working-directory: methods/${{ matrix.folder }} 
+
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: methods/${{ matrix.folder }}/
           file: methods/${{ matrix.folder }}/Dockerfile
           push: true
-          #tags: ghcr.io/ldimbenchmark/ldimbenchmark:${{ github.event.inputs.version }}
-          tags: ghcr.io/ldimbenchmark/${{ matrix.folder }}:${{ github.event.inputs.version }} , ghcr.io/ldimbenchmark/${{ matrix.folder }}:latest
+          #tags: ghcr.io/ldimbenchmark/ldimbenchmark:${{ env.VERSION }}
+          tags: ghcr.io/ldimbenchmark/${{ matrix.folder }}:${{ env.VERSION }} , ghcr.io/ldimbenchmark/${{ matrix.folder }}:latest
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             LDIMBENCHMARK_VERSION=${{ github.event.inputs.version }}
